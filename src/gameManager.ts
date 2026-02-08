@@ -184,7 +184,7 @@ export class GameManager {
         player.faceDownCards = player.faceDownCards.filter(c => !cardIds.includes(c.id));
         player.hand.push(...this.state.discardPile, ...cardsToPlay);
         this.state.discardPile = [];
-        this.cardPlayFailed(player);
+        this.cardPlayFailed();
         return true; 
     }
 
@@ -259,7 +259,7 @@ export class GameManager {
       this.state.currentTurnPlayerId = this.state.players[nextIndex].id;
   }
 
-  private cardPlayFailed(player: Player) {
+    private cardPlayFailed() {
       this.state.lastPlayWasSeven = false;
       this.advanceTurn();
   }

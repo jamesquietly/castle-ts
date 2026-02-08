@@ -399,7 +399,7 @@ const renderTableCards = (player: Player) => {
     return html;
 };
 
-const renderCard = (card: Card, inHand: boolean = false, extraClass: string = '', source?: string) => {
+const renderCard = (card: Card, _: boolean = false, extraClass: string = '', source?: string) => {
     const isSelected = selectedCards.includes(card.id);
     const colorClass = (card.suit === 'hearts' || card.suit === 'diamonds') ? 'red' : 'black'; // Fixed suit check
     return `
