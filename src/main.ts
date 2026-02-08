@@ -12,7 +12,14 @@ let selectedCards: string[] = [];
 // Simple router check
 const checkRoute = async () => {
   const path = window.location.pathname;
-  const match = path.match(/^\/room\/([a-zA-Z0-9-]+)$/);
+    const base = import.meta.env.BASE_URL;
+    let relativePath = path;
+
+    if (path.startsWith(base)) {
+        relativePath = path.substring(base.length);
+    }
+
+    const match = relativePath.match(/^room\/([a-zA-Z0-9-]+)$/);
 
   if (match) {
     const roomId = match[1];
@@ -33,7 +40,8 @@ const showCreateGameUI = () => {
 
   document.getElementById('create-game-btn')?.addEventListener('click', () => {
     const roomId = Math.random().toString(36).substring(2, 9);
-    window.history.pushState({}, '', `/room/${roomId}`);
+      const base = import.meta.env.BASE_URL;
+      window.history.pushState({}, '', `${base}room/${roomId}`);
     checkRoute();
   });
 };
