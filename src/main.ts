@@ -35,6 +35,13 @@ const showCreateGameUI = () => {
     <div class="container center-screen">
       <h1>Castle Game</h1>
       <button id="create-game-btn" class="primary-btn">Create Game</button>
+
+      <div class="divider">OR</div>
+
+      <div class="join-game-section">
+        <input type="text" id="room-id-input" placeholder="Enter Room ID">
+        <button id="join-game-btn" class="secondary-btn">Join Room</button>
+      </div>
     </div>
   `;
 
@@ -44,6 +51,16 @@ const showCreateGameUI = () => {
       window.history.pushState({}, '', `${base}room/${roomId}`);
     checkRoute();
   });
+
+    document.getElementById('join-game-btn')?.addEventListener('click', () => {
+        const input = document.getElementById('room-id-input') as HTMLInputElement;
+        const roomId = input.value.trim();
+        if (roomId) {
+            const base = import.meta.env.BASE_URL;
+            window.history.pushState({}, '', `${base}room/${roomId}`);
+            checkRoute();
+        }
+    });
 };
 
 const showJoiningUI = (roomId: string) => {

@@ -291,3 +291,44 @@ body {
     gap: 10px;
     margin-top: 10px;
 }
+
+.secondary-btn {
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.secondary-btn:hover {
+  background-color: #7f8c8d;
+}
+
+.secondary-btn:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.divider {
+    margin: 20px 0;
+    font-weight: bold;
+    color: #7f8c8d;
+}
+
+.join-game-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.join-game-section input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 200px;
+}
