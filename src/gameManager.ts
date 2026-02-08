@@ -1,4 +1,4 @@
-import type { Card, GameState, Player, Rank, Suit } from './types';
+import type { Card, GameState, Rank, Suit } from './types';
 
 export class GameManager {
   private state: GameState;
