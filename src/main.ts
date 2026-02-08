@@ -11,23 +11,15 @@ let selectedCards: string[] = [];
 
 // Simple router check
 const checkRoute = async () => {
-  const path = window.location.pathname;
-    const base = import.meta.env.BASE_URL;
-    let relativePath = path;
+    const params = new URLSearchParams(window.location.search);
+    const roomId = params.get('roomId');
 
-    if (path.startsWith(base)) {
-        relativePath = path.substring(base.length);
+    if (roomId) {
+        showJoiningUI(roomId);
+        await connectToAbly(roomId);
+    } else {
+        showCreateGameUI();
     }
-
-    const match = relativePath.match(/^room\/([a-zA-Z0-9-]+)$/);
-
-  if (match) {
-    const roomId = match[1];
-    showJoiningUI(roomId);
-    await connectToAbly(roomId);
-  } else {
-    showCreateGameUI();
-  }
 };
 
 const showCreateGameUI = () => {
@@ -48,7 +40,7 @@ const showCreateGameUI = () => {
   document.getElementById('create-game-btn')?.addEventListener('click', () => {
     const roomId = Math.random().toString(36).substring(2, 9);
       const base = import.meta.env.BASE_URL;
-      window.history.pushState({}, '', `${base}room/${roomId}`);
+      window.history.pushState({}, '', `${base}?roomId=${roomId}`);
     checkRoute();
   });
 
@@ -57,7 +49,7 @@ const showCreateGameUI = () => {
         const roomId = input.value.trim();
         if (roomId) {
             const base = import.meta.env.BASE_URL;
-            window.history.pushState({}, '', `${base}room/${roomId}`);
+            window.history.pushState({}, '', `${base}?roomId=${roomId}`);
             checkRoute();
         }
     });
